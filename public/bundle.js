@@ -56,11 +56,20 @@
 	    hashHistory = _require.hashHistory;
 
 	var Main = __webpack_require__(245);
+	var Weather = __webpack_require__(247);
+	var About = __webpack_require__(250);
+	var Example = __webpack_require__(251);
 
 	ReactDOM.render(React.createElement(
 	    Router,
 	    { history: hashHistory },
-	    React.createElement(Route, { path: '/', component: Main })
+	    React.createElement(
+	        Route,
+	        { path: '/', component: Main },
+	        React.createElement(Route, { path: 'about', component: About }),
+	        React.createElement(Route, { path: 'example', component: Example }),
+	        React.createElement(IndexRoute, { component: Weather })
+	    )
 	), document.getElementById('app'));
 
 /***/ }),
@@ -26312,7 +26321,8 @@
 	                'h2',
 	                null,
 	                'Main Component'
-	            )
+	            ),
+	            this.props.children
 	        );
 	    }
 	});
@@ -26327,19 +26337,175 @@
 
 	var React = __webpack_require__(1);
 
+	var _require = __webpack_require__(159),
+	    Link = _require.Link,
+	    IndexLink = _require.IndexLink;
+
 	var Nav = React.createClass({
 	    displayName: 'Nav',
 
 	    render: function render() {
 	        return React.createElement(
-	            'h2',
+	            'div',
 	            null,
-	            'Nav Component'
+	            React.createElement(
+	                'h2',
+	                null,
+	                'Nav Component'
+	            ),
+	            React.createElement(
+	                IndexLink,
+	                { to: '/', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
+	                'Get Weather'
+	            ),
+	            React.createElement(
+	                Link,
+	                { to: '/about', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
+	                'About'
+	            ),
+	            React.createElement(
+	                Link,
+	                { to: '/example', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
+	                'Example'
+	            )
 	        );
 	    }
 	});
 
 	module.exports = Nav;
+
+/***/ }),
+/* 247 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var WeatherForm = __webpack_require__(248);
+	var WeatherMessage = __webpack_require__(249);
+
+	var Weather = React.createClass({
+	    displayName: 'Weather',
+
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	                'h3',
+	                null,
+	                'Get Weather'
+	            ),
+	            React.createElement(WeatherForm, null),
+	            React.createElement(WeatherMessage, null)
+	        );
+	    }
+	});
+
+	module.exports = Weather;
+
+/***/ }),
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var WeatherForm = React.createClass({
+	    displayName: "WeatherForm",
+
+	    render: function render() {
+	        return React.createElement(
+	            "form",
+	            null,
+	            React.createElement(
+	                "div",
+	                null,
+	                React.createElement("input", { type: "text", placeholder: "Enter Location..." })
+	            ),
+	            React.createElement(
+	                "div",
+	                null,
+	                React.createElement(
+	                    "button",
+	                    { type: "submit" },
+	                    "Get Weather"
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = WeatherForm;
+
+/***/ }),
+/* 249 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var WeatherMessage = React.createClass({
+	    displayName: 'WeatherMessage',
+
+	    render: function render() {
+	        var info = this.props.info;
+	        return React.createElement(
+	            'h3',
+	            null,
+	            'hello ',
+	            info
+	        );
+	    }
+	});
+
+	module.exports = WeatherMessage;
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var About = React.createClass({
+	    displayName: 'About',
+
+	    render: function render() {
+	        return React.createElement(
+	            'h3',
+	            null,
+	            'About Component'
+	        );
+	    }
+	});
+
+	module.exports = About;
+
+/***/ }),
+/* 251 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Example = React.createClass({
+	    displayName: 'Example',
+
+	    render: function render() {
+	        return React.createElement(
+	            'h3',
+	            null,
+	            'Example Component'
+	        );
+	    }
+	});
+
+	module.exports = Example;
 
 /***/ })
 /******/ ]);
