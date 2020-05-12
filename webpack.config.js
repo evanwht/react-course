@@ -13,7 +13,8 @@ module.exports = {
             Example: 'app/components/Example.jsx',
             Weather: 'app/components/Weather.jsx',
             WeatherForm: 'app/components/WeatherForm.jsx',
-            WeatherMessage: 'app/components/WeatherMessage.jsx'
+            WeatherMessage: 'app/components/WeatherMessage.jsx',
+            OpenWeatherMap: 'app/api/OpenWeatherMap.jsx'
         },
         extensions: ['', '.js', '.jsx']
     },
