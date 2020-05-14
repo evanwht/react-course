@@ -26377,11 +26377,14 @@
 	            null,
 	            React.createElement(Nav, null),
 	            React.createElement(
-	                'h2',
-	                null,
-	                'Main Component'
-	            ),
-	            this.props.children
+	                'div',
+	                { className: 'row' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'columns medium-6 large-4 small-centered' },
+	                    this.props.children
+	                )
+	            )
 	        );
 	    }
 	});
@@ -28323,23 +28326,103 @@
 /* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var React = __webpack_require__(8);
 
 	var About = function About(props) {
 	    return React.createElement(
-	        'div',
+	        "div",
 	        null,
 	        React.createElement(
-	            'h3',
-	            null,
-	            'About'
+	            "h1",
+	            { className: "text-center" },
+	            "About"
 	        ),
 	        React.createElement(
-	            'p',
+	            "p",
 	            null,
-	            'Page about this app'
+	            "This was built following the ",
+	            React.createElement(
+	                "a",
+	                { href: "https://www.udemy.com/course/the-complete-react-web-app-developer-course/" },
+	                "Complete React Developer Course"
+	            ),
+	            " on Udemy"
+	        ),
+	        React.createElement(
+	            "p",
+	            null,
+	            "View the code on ",
+	            React.createElement(
+	                "a",
+	                { href: "https://github.com/evanwht1/react-course" },
+	                "github"
+	            ),
+	            "."
+	        ),
+	        React.createElement(
+	            "p",
+	            null,
+	            "Tools used:"
+	        ),
+	        React.createElement(
+	            "uil",
+	            null,
+	            React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                    "a",
+	                    { href: "https://reactjs.org/" },
+	                    "React"
+	                )
+	            ),
+	            React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                    "a",
+	                    { href: "https://get.foundation/index.html" },
+	                    "Foundation"
+	                )
+	            ),
+	            React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                    "a",
+	                    { href: "https://openweathermap.org/" },
+	                    "OpenWeatherMap.org"
+	                )
+	            ),
+	            React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                    "a",
+	                    { href: "https://babeljs.io/" },
+	                    "Babel"
+	                )
+	            ),
+	            React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                    "a",
+	                    { href: "https://webpack.js.org/" },
+	                    "Webpack"
+	                )
+	            ),
+	            React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                    "a",
+	                    { href: "https://www.heroku.com/" },
+	                    "Heroku"
+	                )
+	            )
 	        )
 	    );
 	};
@@ -28354,6 +28437,9 @@
 
 	var React = __webpack_require__(8);
 
+	var _require = __webpack_require__(166),
+	    Link = _require.Link;
+
 	var Example = React.createClass({
 	    displayName: 'Example',
 
@@ -28362,14 +28448,36 @@
 	            'div',
 	            null,
 	            React.createElement(
-	                'h3',
-	                null,
+	                'h1',
+	                { className: 'text-center' },
 	                'Examples'
 	            ),
 	            React.createElement(
 	                'p',
 	                null,
-	                'Welcome to the examples page'
+	                'Here are a few exmaple places to try out:'
+	            ),
+	            React.createElement(
+	                'ol',
+	                null,
+	                React.createElement(
+	                    'li',
+	                    null,
+	                    React.createElement(
+	                        Link,
+	                        { to: '/?location=Chicago,us' },
+	                        'Chicago, IL'
+	                    )
+	                ),
+	                React.createElement(
+	                    'li',
+	                    null,
+	                    React.createElement(
+	                        Link,
+	                        { to: '/?location=Rio,br' },
+	                        'Rio, Brazil'
+	                    )
+	                )
 	            )
 	        );
 	    }
