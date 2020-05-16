@@ -26411,8 +26411,12 @@
 
 	    onSearch: function onSearch(e) {
 	        e.preventDefault();
-
-	        console.log("not implemented");
+	        var location = this.refs.location.value;
+	        var encodedLocation = encodeURIComponent(location);
+	        if (location.length > 0) {
+	            this.refs.location.value = '';
+	            window.location.hash = '#/?location=' + encodedLocation;
+	        }
 	    },
 	    render: function render() {
 	        return React.createElement(
@@ -26510,7 +26514,9 @@
 	        var that = this;
 	        this.setState({
 	            isLoading: true,
-	            errorMessage: undefined
+	            errorMessage: undefined,
+	            location: null,
+	            temp: null
 	        });
 	        OpenWeatherMap.getTemp(location).then(function (temp) {
 	            that.setState({
@@ -26521,11 +26527,23 @@
 	        }, function (e) {
 	            that.setState({
 	                isLoading: false,
-	                location: location,
-	                temp: null,
 	                errorMessage: e.message
 	            });
 	        });
+	    },
+	    componentDidMount: function componentDidMount() {
+	        var location = this.props.location.query.location;
+	        if (location && location.length > 0) {
+	            this.handleSearch(location);
+	            window.location.hash = '#/';
+	        }
+	    },
+	    componentWillReceiveProps: function componentWillReceiveProps(newProps) {
+	        var location = newProps.location.query.location;
+	        if (location && location.length > 0) {
+	            this.handleSearch(location);
+	            window.location.hash = '#/';
+	        }
 	    },
 	    render: function render() {
 	        var _state = this.state,
@@ -28924,8 +28942,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!./app.css", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!./app.css");
+			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/index.js!./app.scss", function() {
+				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/index.js!./app.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -28943,7 +28961,7 @@
 
 
 	// module
-	exports.push([module.id, ".page-title {\n    margin-top: 2.5rem;\n    margin-bottom: 2.5rem;\n}\ninput[type=search] {\n    box-shadow: none;\n}", ""]);
+	exports.push([module.id, ".page-title {\n  margin-top: 2.5rem;\n  margin-bottom: 2.5rem;\n  color: #555; }\n\ninput[type=search] {\n  box-shadow: none; }\n", ""]);
 
 	// exports
 
