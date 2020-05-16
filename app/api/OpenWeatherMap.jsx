@@ -13,9 +13,9 @@ module.exports = {
         }).then(function(resp) {
             console.log(resp);
             if (resp.data.cod != 200 && resp.data.message != "accurate") {
-                throw new Error(resp.data.message);
+                throw new Error('Error fetching data');
             } else if (resp.data.list.length == 0) {
-                throw new Error("No city found");
+                throw new Error('No city found for that location');
             } else {
                 return resp.data.list[0].main.temp;
             }
